@@ -40,7 +40,7 @@ app.post('/cadastro', (req, res) => {
     }
     const novoUsuario = { id: usuarios.length + 1, nome, email, senha };
     usuarios.push(novoUsuario);
-    res.redirect('/operacoes.html');
+    res.redirect('/login.html');
 });
 
 app.get('/operacoes', (req, res) => {

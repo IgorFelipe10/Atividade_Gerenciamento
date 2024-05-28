@@ -1,0 +1,120 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: radial-gradient(#015a149a, #05771e); 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#jogadores-lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.jogador-card {
+    background-color: rgb(18, 170, 87);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.jogador-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: white;
+}
+
+.jogador-card p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #ffffff;
+    text-align: justify;
+}
+
+.jogador-card img {
+    width: 90%;
+    height: 37%;
+    border-radius: 8px;
+}
+
+.adicionar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; 
+    width: 100%;  
+    margin-top: 20px;
+}
+
+.adicionar {
+    display: block; 
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #1f2225;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px;
+    height: auto;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 10px;
+}
+
+.adicionar:hover {
+    background-color: #028f64a8;
+}
+
+.remover {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.remover:hover {
+    background-color: #e60000;
+}
+
+.remover:active {
+    background-color: #cc0000;
+}
+
+.editar {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #1f66c4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.editar:hover {
+    background-color: #174bac;
+}
+
+.editar:active {
+    background-color: #174bac;
+}

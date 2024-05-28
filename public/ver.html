@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ver.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <title>Ver Jogadores</title>
+</head>
+<body>
+    <h2 style="color: white;">Lista de Jogadores</h2>
+    <ul id="jogadores-lista"></ul>
+    <div class="adicionar-container">
+        <a href="/adicionar" class="adicionar">Adicionar novo jogador</a>
+        <a href="/operacoes" class="adicionar">Voltar para menu principal</a>
+    </div>
+    <script>
+        function buscarJogadores() {
+            fetch('/api/jogadores')
+                .then(response => response.json())
+                .then(jogadores => {
+                    const listaJogadores = document.getElementById('jogadores-lista');
+                    listaJogadores.innerHTML = '';
+                    jogadores.forEach(jogador => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('jogador-card');
+                        listItem.innerHTML = `
+                            <h3>${jogador.nome}</h3>
+                            <img src="${jogador.imagem}" alt="${jogador.nome}">
+                            <p>Idade: ${jogador.idade}</p>
+                            <p>Nacionalidade: ${jogador.nacionalidade}</p>
+                            <p>Posição: ${jogador.posicao}</p>
+                            <p>Partidas: ${jogador.partidas}</p>
+                            <p>Gols: ${jogador.gols}</p>
+                        `;
+                        listaJogadores.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar jogadores:', error));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            buscarJogadores();
+        });
+    </script>
+</body>
+</html>

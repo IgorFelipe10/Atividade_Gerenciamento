@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calculo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <title>Calculadora de Gols</title>
+</head>
+<body>
+    <h1>Calculadora de Gols</h1>
+
+    <div id="resultado"></div>
+
+    <div class="voltar-menu">
+        <a href="operacoes.html">Voltar ao Menu Principal</a>
+    </div>
+    
+    <script>
+        function obterParametroURL(nomeParametro) {
+            const parametrosURL = new URLSearchParams(window.location.search);
+            return parametrosURL.get(nomeParametro);
+        }
+
+        function calcularDiferencaGols(jogador1, jogador2) {
+            const golsJogador1 = jogador1.gols;
+            const golsJogador2 = jogador2.gols;
+            const diferencaGols = Math.abs(golsJogador1 - golsJogador2); 
+            return diferencaGols;
+        }
+
+        async function obterJogadores() {
+            const response = await fetch('/api/jogadores');
+            const data = await response.json();
+            return data;
+        }
+
+        async function iniciarCalculadora() {
+            const nomeJogador1 = obterParametroURL("jogador1");
+            const nomeJogador2 = obterParametroURL("jogador2");
+
+            const jogadores = await obterJogadores();
+
+            const jogador1 = jogadores.find(jogador => jogador.nome === nomeJogador1);
+            const jogador2 = jogadores.find(jogador => jogador.nome === nomeJogador2);
+
+            if (jogador1 && jogador2) {
+                const diferencaGols = calcularDiferencaGols(jogador1, jogador2);
+                
+                let jogadorComMaisGols, jogadorComMenosGols;
+                if (jogador1.gols > jogador2.gols) {
+                    jogadorComMaisGols = nomeJogador1;
+                    jogadorComMenosGols = nomeJogador2;
+                } else {
+                    jogadorComMaisGols = nomeJogador2;
+                    jogadorComMenosGols = nomeJogador1;
+                }
+                document.getElementById("resultado").innerText = `${jogadorComMaisGols} tem ${diferencaGols} gols a mais que ${jogadorComMenosGols}.`;
+            } else {
+                document.getElementById("resultado").innerText = "Jogador não encontrado";
+            }
+        }
+        window.onload = iniciarCalculadora;
+    </script>
+</body>
+</html>

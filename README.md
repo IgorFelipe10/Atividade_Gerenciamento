@@ -23,3 +23,7 @@ npm init -y: Inicializa um novo projeto Node.js com configurações padrão.
 npm install express: Instala o Express.
 npm install: Instala todas as dependências listadas no package.json.
 npm start: Inicia o servidor definido no index.js. :)
+
+Sobre o projeto
+
+É um gerenciador de estatísticas de jogadores de futebol, você pode adicionar, editar seus dados e remover os jogadores. Além de poder calcular a diferença de gols entre dois jogadores.
